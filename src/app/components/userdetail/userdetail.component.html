@@ -8,20 +8,25 @@
           </div>
           <div class="col-md-7">
             <div class="card-body">
-              <div class="row mt-4">
+              <div class="row mt-2">
                 <h3 class="text-info mb-4">{{ user.firstName }} {{ user.lastName }}</h3>
+                <hr>
                 <div class="col-md-6">
                   <h6 class="font-weight-bold text-info mb-3">Personal</h6>
-                  <p class="mb-2"><span class="text-muted">Username:</span> {{ user.username }}</p>
-                  <p class="mb-2"><span class="text-muted">Email:</span> {{ user.email }}</p>
-                  <p class="mb-2"><span class="text-muted">Phone:</span> {{ user.phone }}</p>
-                  <p class="mb-2"><span class="text-muted">Date Of Birth:</span> {{ user.dateOfBirth | date: 'mediumDate' }}</p>
+                  <p class="mb-2 text-muted"><span>Email:</span> {{ user.email }}</p>
+                  <p class="mb-2 text-muted"><span>Phone:</span> {{ user.phone }}</p>
+                  <p class="mb-2 text-muted"><span>Date Of Birth:</span> {{ user.dateOfBirth | date: 'mediumDate' }}</p>
+                  <p class="mb-2 text-muted"><span>Username:</span> {{ user.username }}</p>
                 </div>
                 <div class="col-md-6">
                   <h6 class="font-weight-bold text-info mb-3">Others</h6>
-                  <p class="mb-2"><span class="text-muted">Address:</span> {{ user.address }}</p>
-                  <p class="mb-2"><span class="text-muted">Gender:</span> {{ user.gender }}</p>
+                  <p class="mb-2 text-muted"><span>Address:</span> {{ user.address }}</p>
+                  <p class="mb-2 text-muted"><span>Gender:</span> {{ user.gender }}</p>
                 </div>
+              </div>
+              <hr>
+              <div class="">
+                <p class="text-secondary">Note: The profile in the list differs from the one displayed because of the random nature of the uuid</p>
               </div>
             </div>
           </div>
