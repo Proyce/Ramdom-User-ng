@@ -16,7 +16,7 @@ export class UsersComponent implements OnInit {
   private readonly userServ = inject(UserService);
 
   ngOnInit(): void {
-    this.userServ.fetchAllUsers(24).subscribe((res: Response) => {
+    this.userServ.fetchAllUsers(28).subscribe((res: Response) => {
       this.userResp = res;
     });
   }
