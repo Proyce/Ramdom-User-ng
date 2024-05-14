@@ -8,10 +8,6 @@ export class ThemeSwitchService {
     readonly _theme$: BehaviorSubject<string> = new BehaviorSubject<string>('light-mode');
     public readonly theme$ = this._theme$.asObservable();
 
-    constructor() {
-      this.getTheme();
-    }
-
     setTheme(theme: string): void {
       try {
         localStorage.setItem('user-theme', theme);
