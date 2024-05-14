@@ -1,6 +1,3 @@
-Certainly! Below is an example of a README.md file that guides users on how to run an Angular app:
-
----
 
 # Angular App
 
@@ -80,11 +77,3 @@ Contributions are welcome! If you'd like to contribute to this project, please f
 5. Create a new Pull Request
 
 Thank you for your contribution!
-
-## License
-
-[License information goes here. You can mention the type of license your project uses.]
-
----
-
-Feel free to customize this README template according to your project's specific requirements and guidelines!
