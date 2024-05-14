@@ -21,13 +21,6 @@ export class UsersComponent implements OnInit, OnDestroy {
   private readonly userServ = inject(UserService);
   private readonly themeServ = inject(ThemeSwitchService);
 
-  isMode!: boolean;
-  toggle = new EventEmitter<unknown>();
-
-  onToggleClicked(): void {
-    this.toggle.emit();
-  }
-
   ngOnInit(): void {
     this.themeServ.getTheme();
     this.isDarkMode = this.themeServ.isDarkMode();
