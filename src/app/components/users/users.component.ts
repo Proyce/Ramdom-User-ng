@@ -1,4 +1,9 @@
-import { Component, EventEmitter, OnDestroy, OnInit, inject } from '@angular/core';
+import {
+  Component,
+  OnDestroy,
+  OnInit,
+  inject,
+} from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { Response } from '../../interfaces/user.interface';
 import { NgForOf, NgIf } from '@angular/common';
@@ -24,13 +29,18 @@ export class UsersComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.themeServ.getTheme();
     this.isDarkMode = this.themeServ.isDarkMode();
-    this.userSub = this.userServ.fetchAllUsers(28).subscribe((res: Response) => {
-      this.userResp = res;
-    });
+    this.userSub = this.userServ
+      .fetchAllUsers(28)
+      .subscribe((res: Response) => {
+        this.userResp = res;
+      });
   }
 
   toggleTheme(): void {
-    const theme = this.themeServ._theme$.value === 'light-mode' ? 'dark-mode' : 'light-mode';
+    const theme =
+      this.themeServ._theme$.value === 'light-mode'
+        ? 'dark-mode'
+        : 'light-mode';
     this.themeServ.setTheme(theme);
     this.themeServ.applyTheme(theme);
   }
@@ -43,14 +53,22 @@ export class UsersComponent implements OnInit, OnDestroy {
   }
 
   getTotalPages() {
-    if (!this.userResp || !this.userResp.results || this.userResp.results.length === 0) {
+    if (
+      !this.userResp ||
+      !this.userResp.results ||
+      this.userResp.results.length === 0
+    ) {
       return [];
     }
-    const totalPages = Math.ceil(this.userResp.results.length / this.itemsPerPage);
+    const totalPages = Math.ceil(
+      this.userResp.results.length / this.itemsPerPage
+    );
     if (totalPages < 0 || !Number.isInteger(totalPages)) {
       return [];
     }
-    return Array(totalPages).fill(0).map((_, index) => index + 1);
+    return Array(totalPages)
+      .fill(0)
+      .map((_, index) => index + 1);
   }
 
   getCurrentPageData() {
@@ -60,6 +78,6 @@ export class UsersComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.userSub.unsubscribe()
+    this.userSub.unsubscribe();
   }
 }
