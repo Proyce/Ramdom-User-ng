@@ -1,7 +1,7 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { Response, User } from '../../interfaces/user.interface';
-import { ActivatedRoute, ParamMap } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { DatePipe } from '@angular/common';
 
 
@@ -20,6 +20,5 @@ export class UserdetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.user = <User>(this.activatedRoute.snapshot.data['userResp'].results[0]);
-    console.log(this.user);
   }
 }
