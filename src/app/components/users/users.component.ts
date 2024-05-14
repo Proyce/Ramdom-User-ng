@@ -1,26 +1,45 @@
-import { Component, OnDestroy, OnInit, inject } from '@angular/core';
+import { Component, EventEmitter, OnDestroy, OnInit, inject } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { Response } from '../../interfaces/user.interface';
 import { NgForOf, NgIf } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { ThemeSwitchService } from '../../services/theme-switch.service';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-users',
   standalone: true,
-  imports: [NgForOf, NgIf, RouterLink],
+  imports: [NgForOf, NgIf, RouterLink, FormsModule],
   templateUrl: './users.component.html',
   styleUrl: './users.component.scss',
 })
 export class UsersComponent implements OnInit, OnDestroy {
   userResp!: Response;
   userSub!: Subscription;
+  isDarkMode!: boolean;
   private readonly userServ = inject(UserService);
+  private readonly themeServ = inject(ThemeSwitchService);
+
+  isMode!: boolean;
+  toggle = new EventEmitter<unknown>();
+
+  onToggleClicked(): void {
+    this.toggle.emit();
+  }
 
   ngOnInit(): void {
+    this.themeServ.getTheme();
+    this.isDarkMode = this.themeServ.isDarkMode();
     this.userSub = this.userServ.fetchAllUsers(28).subscribe((res: Response) => {
       this.userResp = res;
     });
+  }
+
+  toggleTheme(): void {
+    const theme = this.themeServ._theme$.value === 'light-mode' ? 'dark-mode' : 'light-mode';
+    this.themeServ.setTheme(theme);
+    this.themeServ.applyTheme(theme);
   }
 
   currentPage = 1;

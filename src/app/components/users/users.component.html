@@ -1,24 +1,60 @@
-<div class="container mt-2" style="width: 1000px;">
+<div class="container mt-2" style="width: 1000px">
   <div *ngIf="userResp" class="card bg-info text-white mb-4">
-    <div class="card-header">
+    <div class="card-header d-flex justify-content-between">
       <h5>Random User API Info</h5>
+      <div>
+        <input
+          type="checkbox"
+          [(ngModel)]="isMode"
+          (click)="toggleTheme()"
+          class="checkbox"
+          id="checkbox"
+        />
+        <label for="checkbox" class="label"  style="cursor: pointer;">
+          <i class="fas fa-moon"></i>
+          <i class="fas fa-sun"></i>
+          <div class="ball"></div>
+        </label>
+      </div>
     </div>
     <div class="card-body">
-      <p class="card-text"><strong>Results:</strong> {{ userResp.info.results }}</p>
+      <p class="card-text">
+        <strong>Results:</strong> {{ userResp.info.results }}
+      </p>
       <p class="card-text"><strong>Page:</strong> {{ currentPage }}</p>
     </div>
   </div>
 
   <div class="row">
-    <div class="col-md-4 d-flex" *ngFor="let user of getCurrentPageData(); let i = index">
-      <div class="card bg-light mb-4 flex-fill">
-        <img src="{{ user.imageUrl }}" class="card-img-top rounded-circle mx-auto mt-2" style="height: 150px; width: 150px;" alt="User Image">
+    <div
+      class="col-md-4 d-flex"
+      *ngFor="let user of getCurrentPageData(); let i = index"
+    >
+      <div class="card cardRef bg-light mb-4 flex-fill" id="card">
+        <img
+          src="{{ user.imageUrl }}"
+          class="card-img-top rounded-circle mx-auto mt-2"
+          style="height: 150px; width: 150px"
+          alt="User Image"
+        />
         <div class="card-body d-flex flex-column">
-          <h5 class="card-title text-info">{{ user.firstName }} {{ user.lastName }}</h5>
-          <p class="card-text flex-grow-1"><strong>Email:</strong> {{ user.email }}</p>
-          <p class="card-text flex-grow-1"><strong>Phone:</strong> {{ user.phone }}</p>
-          <p class="card-text flex-grow-1"><strong>Address:</strong> {{ user.address }}</p>
-          <a [routerLink]="['/user', user.uuid]" class="btn btn-info text-white d-block">View User</a>
+          <h5 class="card-title text-info">
+            {{ user.firstName }} {{ user.lastName }}
+          </h5>
+          <p class="card-text flex-grow-1">
+            <strong>Email:</strong> {{ user.email }}
+          </p>
+          <p class="card-text flex-grow-1">
+            <strong>Phone:</strong> {{ user.phone }}
+          </p>
+          <p class="card-text flex-grow-1">
+            <strong>Address:</strong> {{ user.address }}
+          </p>
+          <a
+            [routerLink]="['/user', user.uuid]"
+            class="btn btn-info text-white d-block"
+            >View User</a
+          >
         </div>
       </div>
     </div>
@@ -27,7 +63,13 @@
   <nav>
     <ul class="pagination justify-content-center">
       <li class="page-item" *ngFor="let page of getTotalPages()">
-        <a class="page-link" (click)="onPageChange(page)" [class.active]="currentPage === page" style="cursor: pointer;">{{ page }}</a>
+        <a
+          class="page-link"
+          (click)="onPageChange(page)"
+          [class.active]="currentPage === page"
+          style="cursor: pointer"
+          >{{ page }}</a
+        >
       </li>
     </ul>
   </nav>

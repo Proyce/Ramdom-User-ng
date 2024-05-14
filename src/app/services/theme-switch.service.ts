@@ -33,10 +33,16 @@ export class ThemeSwitchService {
     applyTheme(theme: string): void {
       if (theme === 'dark-mode') {
         document.body.classList.add('dark-mode');
-        document.getElementById('table')!.classList.add('table-dark');
+        document.querySelectorAll('.cardRef').forEach(card => {
+          card.classList.remove('bg-light');
+          card.classList.add('bg-secondary');
+        });
       } else {
         document.body.classList.remove('dark-mode');
-        document.getElementById('table')!.classList.remove('table-dark');
+        document.querySelectorAll('.cardRef').forEach(card => {
+          card.classList.remove('bg-secondary');
+          card.classList.add('bg-light');
+        });
       }
     }
 
