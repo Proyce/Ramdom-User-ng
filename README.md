@@ -1,7 +1,7 @@
 
 # Angular App
 
-This project is an Angular application that [provide a brief description of your application here].
+This project is an Angular application running on Angular 17.
 
 ## Prerequisites
 
@@ -64,7 +64,7 @@ Here are some additional commands you can use with Angular CLI:
 
 ## Support
 
-If you encounter any issues or have any questions, please feel free to open an issue on this repository. You can also reach out to [maintainer's name] at [maintainer's email].
+If you encounter any issues or have any questions, please feel free to open an issue on this repository. 
 
 ## Contributing
 
