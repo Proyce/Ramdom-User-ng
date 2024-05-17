@@ -37,6 +37,9 @@ export class UsersComponent implements OnInit, OnDestroy {
     if (currentPageFromStorage) {
       this.currentPage = +currentPageFromStorage;
     }
+
+    const storedTheme = localStorage.getItem('darkModeEnabled');
+    this.darkModeEnabled = storedTheme === 'true';
   }
 
   fetchUsers(): void {
@@ -50,9 +53,11 @@ export class UsersComponent implements OnInit, OnDestroy {
 
   toggleTheme(): void {
     this.darkModeEnabled = !this.darkModeEnabled;
+    localStorage.setItem('darkModeEnabled', this.darkModeEnabled.toString());
     const theme = this.darkModeEnabled ? 'dark-mode' : 'light-mode';
     this.themeServ.setTheme(theme);
     this.applyTheme(theme);
+
   }
 
   currentPage = 1;
