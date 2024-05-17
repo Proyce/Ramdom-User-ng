@@ -1,8 +1,7 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { UserService } from '../../services/user.service';
 import { Response, User } from '../../interfaces/user.interface';
-import { ActivatedRoute } from '@angular/router';
-import { DatePipe } from '@angular/common';
+import { ActivatedRoute, Router } from '@angular/router';
+import { DatePipe, Location } from '@angular/common';
 
 
 @Component({
@@ -15,10 +14,15 @@ import { DatePipe } from '@angular/common';
 export class UserdetailComponent implements OnInit {
   user!: User
   userResp!: Response
-  private readonly userServ = inject(UserService)
-  private readonly activatedRoute = inject(ActivatedRoute)
+  private readonly router = inject(Router);
+  private readonly location = inject(Location);
+  private readonly activatedRoute = inject(ActivatedRoute);
 
   ngOnInit(): void {
     this.user = <User>(this.activatedRoute.snapshot.data['userResp'].results[0]);
+  }
+
+  goBack(): void {
+    this.location.back();
   }
 }
