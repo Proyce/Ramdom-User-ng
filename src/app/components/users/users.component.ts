@@ -32,6 +32,11 @@ export class UsersComponent implements OnInit, OnDestroy {
       this.applyTheme(theme);
     });
     this.fetchUsers();
+
+    const currentPageFromStorage = localStorage.getItem('currentPage');
+    if (currentPageFromStorage) {
+      this.currentPage = +currentPageFromStorage;
+    }
   }
 
   fetchUsers(): void {
@@ -58,6 +63,8 @@ export class UsersComponent implements OnInit, OnDestroy {
     this.themeServ.getTheme().subscribe(theme => {
       this.applyTheme(theme);
     });
+
+    localStorage.setItem('currentPage', pageNumber.toString());
   }
 
   applyTheme(theme: string): void {
